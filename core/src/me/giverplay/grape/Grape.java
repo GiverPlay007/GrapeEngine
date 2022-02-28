@@ -27,5 +27,6 @@ public class Grape extends ApplicationAdapter {
 	public void dispose () {
 		batch.dispose();
 		img.dispose();
+
 	}
 }
