@@ -12,7 +12,7 @@ public class Assets {
   public static final AnnotationAssetManager manager = new AnnotationAssetManager(new InternalFileHandleResolver());
 
   @Asset
-  public static AssetDescriptor<Texture> stoneTexture = new AssetDescriptor<>("blocks/stone.png", Texture.class);
+  public static AssetDescriptor<Texture> splashBanner = new AssetDescriptor<>("splash.jpg", Texture.class);
 
   public static void load() {
     Texture.setAssetManager(manager);
