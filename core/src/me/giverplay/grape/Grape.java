@@ -1,14 +1,24 @@
 package me.giverplay.grape;
 
-import com.badlogic.gdx.ApplicationAdapter;
+import com.badlogic.gdx.Game;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.ScreenUtils;
 
-public class Grape extends ApplicationAdapter {
+public final class Grape extends Game {
+
+	public static final int SCREEN_WIDTH = 1280;
+	public static final int SCREEN_HEIGHT = 720;
+
+	private Grape() {
+		if(instance != null) throw new UnsupportedOperationException("Cannot instantiate singleton class!");
+	}
+
+	public static final Grape instance = new Grape();
+
 	SpriteBatch batch;
 	Texture img;
-	
+
 	@Override
 	public void create () {
 		batch = new SpriteBatch();
@@ -27,6 +37,5 @@ public class Grape extends ApplicationAdapter {
 	public void dispose () {
 		batch.dispose();
 		img.dispose();
-
 	}
 }

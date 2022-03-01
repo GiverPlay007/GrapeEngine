@@ -24,6 +24,7 @@ allprojects {
         aiVersion = '1.8.2'
         gdxControllersVersion = '2.1.0'
         artemisVersion = '2.3.0'
+        gdxUtilsVersion = '0.13.7'
     }
 
     repositories {
@@ -63,5 +64,6 @@ project(":core") {
         api "com.badlogicgames.gdx:gdx:$gdxVersion"
         api "com.badlogicgames.gdx:gdx-box2d:$gdxVersion"
         api "net.onedaybeard.artemis:artemis-odb:$artemisVersion"
+        api "com.github.tommyettinger:libgdx-utils:$gdxUtilsVersion"
     }
 }
