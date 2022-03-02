@@ -12,8 +12,7 @@ import java.util.Map;
 public class Assets {
 
   public static final AnnotationAssetManager manager = new AnnotationAssetManager(new InternalFileHandleResolver());
-
-  private static final Map<String, AssetDescriptor<Texture>> textures = new HashMap<>();
+  public static final Map<String, AssetDescriptor<Texture>> textures = new HashMap<>();
 
   private static boolean engineLoaded;
 
