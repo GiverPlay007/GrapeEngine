@@ -21,6 +21,8 @@ public class SplashScreen extends ScreenAdapter {
     batch = new SpriteBatch();
     splash = new Texture("splash.jpg");
     start = TimeUtils.millis();
+
+    Assets.addTexture("finde", "finde.png");
     Assets.load();
   }
 

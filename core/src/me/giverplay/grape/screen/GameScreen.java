@@ -1,12 +1,12 @@
 package me.giverplay.grape.screen;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
-import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.utils.ScreenUtils;
 
 import me.giverplay.grape.Grape;
+import me.giverplay.grape.resource.Assets;
 import me.giverplay.grape.world.World;
 
 public class GameScreen extends ScreenAdapter {
@@ -22,14 +22,15 @@ public class GameScreen extends ScreenAdapter {
     camera.setToOrtho(false, Grape.SCREEN_WIDTH, Grape.SCREEN_HEIGHT);
 
     batch = new SpriteBatch();
-
     world = new World(camera, 100, 100);
+
+    world.getEntityFactory().createSampleEntity(150, 12);
   }
 
   @Override
   public void render(float deltaTime) {
-    Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-    Gdx.gl.glClearColor(0.3f, 0.6f, 0.8f, 1);
+    ScreenUtils.clear(0.6f, 0.2f, 0.3f, 1.0f);
+
 
     world.update(deltaTime);
   }

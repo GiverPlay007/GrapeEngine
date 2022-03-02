@@ -17,12 +17,12 @@ public class Assets {
   private static boolean engineLoaded;
 
   public static void addTexture(String name, String path) {
+    if(engineLoaded) {
+      throw new IllegalStateException("Cannot initialize assets after engine is loaded");
+    }
+
     AssetDescriptor<Texture> texture = new AssetDescriptor<>(path, Texture.class);
     textures.put(name, texture);
-
-    if(engineLoaded) {
-      manager.load(texture);
-    }
   }
 
   public static Texture getTexture(String name) {

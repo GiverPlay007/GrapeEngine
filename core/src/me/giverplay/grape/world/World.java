@@ -29,7 +29,7 @@ public class World implements Disposable {
 
     artemisWorld = new com.artemis.World(config.build());
 
-    entityFactory = new EntityFactory();
+    entityFactory = new EntityFactory(artemisWorld);
     artemisWorld.inject(entityFactory);
   }
 
