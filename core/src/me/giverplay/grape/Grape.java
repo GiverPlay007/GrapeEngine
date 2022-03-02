@@ -1,6 +1,7 @@
 package me.giverplay.grape;
 
 import com.badlogic.gdx.Game;
+import com.badlogic.gdx.utils.ScreenUtils;
 
 import me.giverplay.grape.screen.SplashScreen;
 
@@ -30,6 +31,7 @@ public final class Grape extends Game {
 		if(screen instanceof SplashScreen) {
 			screen.dispose();
 			screen = null;
+			ScreenUtils.clear(1, 1, 1, 1);
 		}
 	}
 }
