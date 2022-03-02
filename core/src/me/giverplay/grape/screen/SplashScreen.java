@@ -33,6 +33,7 @@ public class SplashScreen extends ScreenAdapter {
     batch.end();
 
     if (TimeUtils.millis() - start > 3000 && Assets.manager.update()){
+      Assets.onEngineLoad();
       Grape.instance.onLoad();
     }
   }
