@@ -55,13 +55,4 @@ public final class Grape extends Game {
 		screen.dispose();
 		screen = null;
 	}
-
-	public void onLoad() {
-		if(screen instanceof SplashScreen) {
-			screen.dispose();
-			screen = null;
-			ScreenUtils.clear(0.0f, 0.0f, 0.0f, 1.0f);
-			setScreen(new GameScreen());
-		}
-	}
 }
