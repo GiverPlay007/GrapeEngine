@@ -6,9 +6,6 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.TimeUtils;
 
-import me.giverplay.grape.Grape;
-import me.giverplay.grape.resource.Assets;
-
 public class SplashScreen extends ScreenAdapter {
 
   private SpriteBatch batch;
@@ -21,9 +18,6 @@ public class SplashScreen extends ScreenAdapter {
     batch = new SpriteBatch();
     splash = new Texture("splash.jpg");
     start = TimeUtils.millis();
-
-    Assets.addTexture("finde", "finde.png");
-    Assets.load();
   }
 
   @Override
@@ -33,16 +27,15 @@ public class SplashScreen extends ScreenAdapter {
     batch.begin();
     batch.draw(splash, 0, 0);
     batch.end();
-
-    if (TimeUtils.millis() - start > 3000 && Assets.manager.update()){
-      Assets.onEngineLoad();
-      Grape.instance.onLoad();
-    }
   }
 
   @Override
   public void dispose() {
     batch.dispose();
     splash.dispose();
+  }
+
+  public long getStart() {
+    return start;
   }
 }
