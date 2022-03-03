@@ -46,7 +46,7 @@ public final class Grape extends Game {
 			splash.render(Gdx.graphics.getDeltaTime());
 			return;
 		}
-
+		Gdx.input.justTouched();
 		super.render();
 	}
 

@@ -7,6 +7,7 @@ import com.badlogic.gdx.utils.Disposable;
 import me.giverplay.grape.entity.EntityFactory;
 import me.giverplay.grape.system.MovementSystem;
 import me.giverplay.grape.system.SpriteRenderSystem;
+import me.giverplay.grape.system.TouchSystem;
 
 public class World implements Disposable {
 
@@ -24,6 +25,7 @@ public class World implements Disposable {
     this.height = height;
 
     WorldConfigurationBuilder config = new WorldConfigurationBuilder()
+      .with(new TouchSystem(camera))
       .with(new MovementSystem(this))
       .with(new SpriteRenderSystem(camera));
 

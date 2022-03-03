@@ -9,6 +9,7 @@ import me.giverplay.grape.entity.component.CollidableComponent;
 import me.giverplay.grape.entity.component.JumpComponent;
 import me.giverplay.grape.entity.component.RigidBodyComponent;
 import me.giverplay.grape.entity.component.SpriteComponent;
+import me.giverplay.grape.entity.component.TouchableComponent;
 import me.giverplay.grape.entity.component.TransformComponent;
 import me.giverplay.grape.resource.Assets;
 
@@ -18,6 +19,7 @@ public class EntityFactory {
   private ComponentMapper<RigidBodyComponent> rigidBodyComponentMapper;
   private ComponentMapper<SpriteComponent> spriteComponentMapper;
   private ComponentMapper<JumpComponent> jumpComponentMapper;
+  private ComponentMapper<TouchableComponent> touchableComponentMapper;
 
   private final World world;
 
@@ -35,6 +37,8 @@ public class EntityFactory {
 
     SpriteComponent sprite = spriteComponentMapper.create(entityId);
     sprite.sprite = new Sprite(texture);
+
+    touchableComponentMapper.create(entityId);
 
     return entityId;
   }
