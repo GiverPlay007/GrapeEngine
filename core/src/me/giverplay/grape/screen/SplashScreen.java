@@ -1,5 +1,6 @@
 package me.giverplay.grape.screen;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -16,7 +17,7 @@ public class SplashScreen extends ScreenAdapter {
   @Override
   public void show() {
     batch = new SpriteBatch();
-    splash = new Texture("splash.jpg");
+    splash = new Texture("splash.png");
     start = TimeUtils.millis();
   }
 
@@ -25,7 +26,7 @@ public class SplashScreen extends ScreenAdapter {
     ScreenUtils.clear(0, 0, 0, 1);
 
     batch.begin();
-    batch.draw(splash, 0, 0);
+    batch.draw(splash, 0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
     batch.end();
   }
 
