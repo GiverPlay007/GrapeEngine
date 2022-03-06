@@ -5,9 +5,9 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.utils.Disposable;
 
 import me.giverplay.grape.entity.EntityFactory;
-import me.giverplay.grape.system.MovementSystem;
-import me.giverplay.grape.system.SpriteRenderSystem;
-import me.giverplay.grape.system.TouchSystem;
+import me.giverplay.grape.entity.system.MovementSystem;
+import me.giverplay.grape.entity.system.SpriteRenderSystem;
+import me.giverplay.grape.entity.system.TouchSystem;
 
 public class World implements Disposable {
 

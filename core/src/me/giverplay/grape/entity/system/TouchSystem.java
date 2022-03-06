@@ -1,4 +1,4 @@
-package me.giverplay.grape.system;
+package me.giverplay.grape.entity.system;
 
 import com.artemis.Aspect;
 import com.artemis.ComponentMapper;
