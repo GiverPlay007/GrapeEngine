@@ -7,6 +7,7 @@ import com.badlogic.gdx.utils.ScreenUtils;
 
 import me.giverplay.grape.Grape;
 import me.giverplay.grape.resource.Assets;
+import me.giverplay.grape.ui.DynamicHUD;
 import me.giverplay.grape.world.World;
 
 public class GameScreen extends ScreenAdapter {
@@ -15,6 +16,11 @@ public class GameScreen extends ScreenAdapter {
   private SpriteBatch batch;
 
   private World world;
+  private DynamicHUD hud;
+
+  public GameScreen() {
+    hud = new DynamicHUD(Grape.SCREEN_WIDTH, Grape.SCREEN_HEIGHT);
+  }
 
   @Override
   public void show() {
@@ -25,24 +31,26 @@ public class GameScreen extends ScreenAdapter {
     world = new World(camera, 100, 100);
 
     world.getEntityFactory().createSampleEntity(150, 12);
+    hud.start();
   }
 
   @Override
   public void render(float deltaTime) {
     ScreenUtils.clear(0.6f, 0.2f, 0.3f, 1.0f);
 
-
+    hud.draw();
     world.update(deltaTime);
   }
 
   @Override
   public void resize(int width, int height) {
-
+    hud.resize(width, height);
   }
 
   @Override
   public void dispose() {
     batch.dispose();
     world.dispose();
+    hud.dispose();
   }
 }

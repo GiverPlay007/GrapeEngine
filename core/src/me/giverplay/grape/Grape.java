@@ -16,18 +16,21 @@ public final class Grape extends Game {
 
 	public static final Grape instance = new Grape();
 
+	private GameScreen gameScreen;
+
 	private Grape() {
 		if(instance != null) throw new UnsupportedOperationException("Cannot instantiate singleton class!");
 	}
 
 	@Override
 	public void create () {
+		Assets.addTexture("finde", "finde.png");
+		gameScreen = new GameScreen();
 		start();
 	}
 
 	public void start() {
 		setScreen(new SplashScreen());
-		Assets.addTexture("finde", "finde.png");
 		Assets.load();
 	}
 
@@ -39,7 +42,7 @@ public final class Grape extends Game {
 			if(TimeUtils.millis() - splash.getStart() > 3000 && Assets.manager.update()) {
 				splash.dispose();
 				ScreenUtils.clear(0.0f, 0.0f, 0.0f, 1.0f);
-				setScreen(new GameScreen());
+				setScreen(gameScreen);
 				return;
 			}
 
