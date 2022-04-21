@@ -7,14 +7,14 @@ import com.badlogic.gdx.scenes.scene2d.Event;
 import com.badlogic.gdx.scenes.scene2d.EventListener;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
-import com.badlogic.gdx.scenes.scene2d.ui.Table;
+import com.badlogic.gdx.scenes.scene2d.ui.WidgetGroup;
 import com.badlogic.gdx.utils.Disposable;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
 import me.giverplay.grape.resource.Assets;
 
-public class DynamicHUD implements Disposable {
+public class HUD implements Disposable {
 
   private final Viewport viewport;
   private final SpriteBatch batch;
@@ -23,7 +23,7 @@ public class DynamicHUD implements Disposable {
   private final int width;
   private final int height;
 
-  public DynamicHUD(int width, int height) {
+  public HUD(int width, int height) {
     this.width = width;
     this.height = height;
     this.batch = new SpriteBatch();
@@ -49,22 +49,16 @@ public class DynamicHUD implements Disposable {
     left.setSize(size, size);
     right.setSize(size, size);
 
-    Table table = new Table();
-    table.left().bottom();
+    WidgetGroup group = new WidgetGroup();
+    group.addActor(up);
+    group.addActor(down);
+    group.addActor(right);
+    group.addActor(left);
 
-    table.add();
-    table.add(up).size(up.getWidth(), up.getHeight());
-    table.add();
-
-    table.row().pad(5, 5, 5, 5);
-    table.add(left).size(left.getWidth(), left.getHeight());
-    table.add();
-    table.add(right).size(right.getWidth(), right.getHeight());
-
-    table.row().padBottom(5);
-    table.add();
-    table.add(down).size(down.getWidth(), down.getHeight());
-    table.add();
+    up.setPosition(100, 150);
+    down.setPosition(100, 50);
+    right.setPosition(150, 100);
+    left.setPosition(50, 100);
 
     stage.addListener(new EventListener() {
       @Override
@@ -73,7 +67,8 @@ public class DynamicHUD implements Disposable {
         return true;
       }
     });
-    stage.addActor(table);
+
+    stage.addActor(group);
     Gdx.input.setInputProcessor(stage);
   }
 

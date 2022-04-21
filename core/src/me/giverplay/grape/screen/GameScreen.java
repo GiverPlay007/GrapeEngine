@@ -6,8 +6,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.ScreenUtils;
 
 import me.giverplay.grape.Grape;
-import me.giverplay.grape.resource.Assets;
-import me.giverplay.grape.ui.DynamicHUD;
+import me.giverplay.grape.ui.HUD;
 import me.giverplay.grape.world.World;
 
 public class GameScreen extends ScreenAdapter {
@@ -16,10 +15,10 @@ public class GameScreen extends ScreenAdapter {
   private SpriteBatch batch;
 
   private World world;
-  private DynamicHUD hud;
+  private HUD hud;
 
   public GameScreen() {
-    hud = new DynamicHUD(Grape.SCREEN_WIDTH, Grape.SCREEN_HEIGHT);
+    hud = new HUD(Grape.SCREEN_WIDTH, Grape.SCREEN_HEIGHT);
   }
 
   @Override
