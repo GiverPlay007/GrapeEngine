@@ -1,12 +1,12 @@
 package me.giverplay.grape;
 
 import com.badlogic.gdx.Game;
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.utils.ScreenUtils;
-import com.badlogic.gdx.utils.TimeUtils;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import me.giverplay.grape.resource.Assets;
-import me.giverplay.grape.screen.GameScreen;
+import me.giverplay.grape.screen.GameScreenBase;
 import me.giverplay.grape.screen.SplashScreen;
 
 public final class Grape extends Game {
@@ -16,7 +16,7 @@ public final class Grape extends Game {
 
 	public static final Grape instance = new Grape();
 
-	private GameScreen gameScreen;
+	private GameScreenBase gameScreen;
 
 	private Grape() {
 		if(instance != null) throw new UnsupportedOperationException("Cannot instantiate singleton class!");
@@ -24,38 +24,29 @@ public final class Grape extends Game {
 
 	@Override
 	public void create () {
-		Assets.addTexture("finde", "finde.png");
-		gameScreen = new GameScreen();
+		Map<String, String> textures = new HashMap<>();
+		textures.put("finde", "finde.png");
+		textures.put("arrow_up", "arrow_up.png");
+		textures.put("arrow_down", "arrow_down.png");
+		textures.put("arrow_right", "arrow_right.png");
+		textures.put("arrow_left", "arrow_left.png");
+
+		gameScreen = new GameScreenBase(textures);
 		start();
 	}
 
 	public void start() {
-		setScreen(new SplashScreen());
+		setScreen(new SplashScreen(this));
 		Assets.load();
-	}
-
-	@Override
-	public void render() {
-		if(screen instanceof SplashScreen) {
-			SplashScreen splash = (SplashScreen) screen;
-
-			if(TimeUtils.millis() - splash.getStart() > 3000 && Assets.manager.update()) {
-				splash.dispose();
-				ScreenUtils.clear(0.0f, 0.0f, 0.0f, 1.0f);
-				setScreen(gameScreen);
-				return;
-			}
-
-			splash.render(Gdx.graphics.getDeltaTime());
-			return;
-		}
-
-		super.render();
 	}
 
 	@Override
 	public void dispose () {
 		screen.dispose();
 		screen = null;
+	}
+
+	public GameScreenBase getMainScreen() {
+		return gameScreen;
 	}
 }
