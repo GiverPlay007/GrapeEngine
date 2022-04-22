@@ -2,74 +2,52 @@ package me.giverplay.grape.ui;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.scenes.scene2d.Event;
-import com.badlogic.gdx.scenes.scene2d.EventListener;
 import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.scenes.scene2d.ui.Image;
+import com.badlogic.gdx.scenes.scene2d.ui.Button;
+import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.WidgetGroup;
+import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.Disposable;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import me.giverplay.grape.resource.Assets;
 
-public class HUD implements Disposable {
+public class HUD extends WidgetGroup implements Disposable {
+
+  private final Map<String, Button> buttons = new HashMap<>();
 
   private final Viewport viewport;
   private final SpriteBatch batch;
   private final Stage stage;
 
-  private final int width;
-  private final int height;
 
   public HUD(int width, int height) {
-    this.width = width;
-    this.height = height;
+    setSize(width, height);
+
     this.batch = new SpriteBatch();
     this.viewport = new FitViewport(width, height, new OrthographicCamera());
     this.stage = new Stage(viewport, batch);
 
-    Assets.addTexture("arrow_up", "arrow_up.png");
-    Assets.addTexture("arrow_down", "arrow_down.png");
-    Assets.addTexture("arrow_right", "arrow_right.png");
-    Assets.addTexture("arrow_left", "arrow_left.png");
+    stage.addActor(this);
+    Gdx.input.setInputProcessor(stage);
   }
 
-  public void start() {
-    Image up = new Image(Assets.getTexture("arrow_up"));
-    Image down = new Image(Assets.getTexture("arrow_down"));
-    Image right = new Image(Assets.getTexture("arrow_right"));
-    Image left = new Image(Assets.getTexture("arrow_left"));
+  public Button addButton(ButtonData data) {
+    Texture texture = Assets.getTexture(data.getTexture());
+    ImageButton button = new ImageButton(new TextureRegionDrawable(texture));
+    button.setPosition(data.getX(), data.getY());
+    button.setSize(data.getWidth(), data.getHeight());
 
-    int size = 64;
+    addActor(button);
+    buttons.put(button.getName(), button);
 
-    up.setSize(size, size);
-    down.setSize(size, size);
-    left.setSize(size, size);
-    right.setSize(size, size);
-
-    WidgetGroup group = new WidgetGroup();
-    group.addActor(up);
-    group.addActor(down);
-    group.addActor(right);
-    group.addActor(left);
-
-    up.setPosition(100, 150);
-    down.setPosition(100, 50);
-    right.setPosition(150, 100);
-    left.setPosition(50, 100);
-
-    stage.addListener(new EventListener() {
-      @Override
-      public boolean handle(Event event) {
-        System.out.println(event.getTarget());
-        return true;
-      }
-    });
-
-    stage.addActor(group);
-    Gdx.input.setInputProcessor(stage);
+    return button;
   }
 
   public void draw() {
@@ -77,6 +55,7 @@ public class HUD implements Disposable {
   }
 
   public void resize(int width, int height) {
+    setSize(width, height);
     viewport.update(width, height);
   }
 
@@ -91,13 +70,5 @@ public class HUD implements Disposable {
 
   public Stage getStage() {
     return stage;
-  }
-
-  public int getWidth() {
-    return width;
-  }
-
-  public int getHeight() {
-    return height;
   }
 }

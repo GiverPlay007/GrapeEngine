@@ -30,6 +30,14 @@ public class Assets {
     return texture != null ? manager.isLoaded(texture) ? manager.get(texture) : null : null;
   }
 
+  public static void unload(String name) {
+    AssetDescriptor<Texture> texture = textures.get(name);
+
+    if(texture != null) {
+      manager.unload(texture.fileName);
+    }
+  }
+
   public static void load() {
     Texture.setAssetManager(manager);
 
