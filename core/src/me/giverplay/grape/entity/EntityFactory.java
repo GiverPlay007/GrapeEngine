@@ -39,6 +39,7 @@ public class EntityFactory {
     sprite.sprite = new Sprite(texture);
 
     touchableComponentMapper.create(entityId);
+    collidableComponentMapper.create(entityId);
 
     return entityId;
   }

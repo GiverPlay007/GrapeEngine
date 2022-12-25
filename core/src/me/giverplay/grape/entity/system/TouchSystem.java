@@ -54,6 +54,8 @@ public class TouchSystem extends IteratingSystem {
         && touchPosition.y >= y && touchPosition.y <= y + sprite.sprite.getHeight()
       ) {
         touchable.isTouched = true;
+        touchable.touchPosition.set(touchPosition.x, touchPosition.y);
+        transform.position.set(touchable.touchPosition);
       }
     }
   }
